@@ -1,30 +1,32 @@
-# Tauri POC
+Tauri React
+=
 
-The purpose of this POC is to demonstrate how to develop a full stack **desktop** application with Tauri and React.
+The purpose of this repository is to demonstrate how to develop a full stack **desktop** application with Tauri and React.
 
-## Table of Contents
+Table of Contents
+-
 
 - [Technology stack](#technology-stack)
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Creating a New Tauri + React + Typescript + Vite Project](#creating-a-new-tauri--react--typescript--vite-project)
 - [Security](#security)
-  * [Protecting UI Passwords and PINs](#protecting-ui-passwords-and-pins)
-  * [Disabling DevTools](#disabling-devtools)
-  * [Disabling the Context Menu](#disabling-the-context-menu)
-  * [Preventing the User from Saving a Page](#preventing-the-user-from-saving-a-page)
-  * [Preventing the User from Revealing the Password in the Resulting Source Code](#preventing-the-user-from-revealing-the-password-in-the-resulting-source-code)
+  - [Protecting UI Passwords and PINs](#protecting-ui-passwords-and-pins)
+  - [Disabling DevTools](#disabling-devtools)
+  - [Disabling the Context Menu](#disabling-the-context-menu)
+  - [Preventing the User from Saving a Page](#preventing-the-user-from-saving-a-page)
+  - [Preventing the User from Revealing the Password in the Resulting Source Code](#preventing-the-user-from-revealing-the-password-in-the-resulting-source-code)
 
-## Technology stack
+# Technology stack
 
 | Name | Version |
 | :--- | :------ |
-| https://v2.tauri.app/) | [![badge](https://img.shields.io/badge/npm-2.1.0-blue)](https://www.npmjs.com/package/@tauri-apps/cli/v/2.1.0) |
+| [Tauri](https://v2.tauri.app/) | [![badge](https://img.shields.io/badge/npm-2.1.0-blue)](https://www.npmjs.com/package/@tauri-apps/cli/v/2.1.0) |
 | [React](https://18.react.dev/) | [![badge](https://img.shields.io/badge/npm-18.3.1-blue)](https://www.npmjs.com/package/react/v/18.3.1) |
 | [TypeScript](https://www.typescriptlang.org/) | [![badge](https://img.shields.io/badge/npm-5.7.2-blue)](https://www.npmjs.com/package/typescript/v/5.6.2) |
 | [Vite](https://vite.dev/) | [![badge](https://img.shields.io/badge/npm-6.0.3-blue)](https://www.npmjs.com/package/vite/v/6.0.1) |
 
-## Dependencies
+# Dependencies
 
 | Dependency | Version | Purpose |
 | :--------- | :------ | :------ |
@@ -42,7 +44,7 @@ The purpose of this POC is to demonstrate how to develop a full stack **desktop*
 | [react-router-dom](https://www.npmjs.com/package/react-router-dom/v/6.28.0) | [![npm](https://img.shields.io/badge/npm-6.28.0-blue)](https://www.npmjs.com/package/react-router-dom/v/6.28.0) | Provides bindings for using [React Router](https://github.com/remix-run/react-router) in web applications. |
 | [zod](https://www.npmjs.com/package/zod/v/3.24.1) | [![npm](https://img.shields.io/badge/npm-3.24.1-blue)](https://www.npmjs.com/package/zod/v/3.24.1) | TypeScript-first schema validation with static type inference |
 
-## Installation
+# Installation
 
 Assuming you have **yarn** installed on your system, follow these steps:
 
@@ -66,7 +68,7 @@ Assuming you have **yarn** installed on your system, follow these steps:
     ```
     You can now install the app from the generated msi file located at `tauri-react\src-tauri\target\release\bundle\msi\tauri-react_0.1.0_x64_en-US.msi` and run the app in release mode.
 	
-## Creating a New Tauri + React + Typescript + Vite Project
+# Creating a New Tauri + React + Typescript + Vite Project
 
 Assuming you have **yarn** installed on your system, follow these steps:
 
@@ -141,9 +143,9 @@ Assuming you have **yarn** installed on your system, follow these steps:
     ```
     You can now install the app from the generated msi file located at `tauri-react\src-tauri\target\release\bundle\msi\tauri-react_0.1.0_x64_en-US.msi` and run the app in release mode.
 
-## Security
+# Security
 
-### Protecting UI Passwords and PINs
+## Protecting UI Passwords and PINs
 
 The application follows the standard security guidelines for UI password/PIN fields, such as ["The application must not display passwords/PINs as clear text"](https://www.stigviewer.com/stig/application_security_and_development/2023-06-08/finding/V-222554) finding. The login page provides a good example implementation to protect such sensitive information by
 - supressing the context menu when the user right-clicks the Password field,
@@ -242,7 +244,7 @@ const Login: React.FC = () => {
   
 ```
 
-### Disabling DevTools
+## Disabling DevTools
 
 DevTools is a valuable tool during development. However, it may reveal sensitive information to the user. To disable DevTools in **debug** builds, add the following configuration under `app/windows` section in `src-tauri/tauri.conf.json`:
 
@@ -250,7 +252,7 @@ DevTools is a valuable tool during development. However, it may reveal sensitive
 "devtools": false
 ```
 
-#### NOTES
+### NOTES
 - This configuration will remove the **Inspector** menu item from the context menu displayed when the user right-clicks inside the client area of the app window. However, the user can still open the Inspector via `Ctrl+Shift+I` shortcut in **debug** builds.
 - The **default** value of this configuration is `false` in **release** builds. *Note that the user cannot open the Inspector window with* `Ctrl+Shift+I` *or* `F12` *keyboard shortcuts in **release** builds*.
 - For more information, please see https://tauri.app/reference/config/#devtools.
@@ -282,7 +284,8 @@ const App: FC = () => {
   
 }
 ```
-### Disabling the Context Menu
+
+## Disabling the Context Menu
 
 The following code prevents displaying the context menu when used inside any component. To prevent displaying the context menu in ALL pages throughout the app, add this code inside the `App.tsx` component.
 
@@ -302,7 +305,7 @@ The following code prevents displaying the context menu when used inside any com
   }, []);
 ```
 
-### Preventing the User from Saving a Page
+## Preventing the User from Saving a Page
 
 The following code prevents the user from saving the page using the standard `CTRL+S` hotkey. To prevent the user from saving the HTML code of ANY page throughout the app, add this code inside the `App.tsx` component.
 
@@ -326,7 +329,7 @@ const App: FC = () => {
 }
 ```
   
-### Preventing the User from Revealing the Password in the Resulting Source Code
+## Preventing the User from Revealing the Password in the Resulting Source Code
 
 When the user has access to the source code (via DevTools or saving the page as HTML), the user can still see the value of the password field in the resulting HTML code. To prevent this for any `TextField` with sensitive information, NEVER set the `value` prop. This is a good security practice, even when the user cannot access to the DevTools or save the page source code.
 
